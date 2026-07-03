@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Matrix — 7 Premium Direct-to-Consumer Stores</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #14141f;
+            --surface2: #1a1a2e;
+            --text: #e8e8f0;
+            --text2: #a0a0b8;
+            --accent: #6c5ce7;
+            --accent2: #a29bfe;
+            --gold: #d4a853;
+            --card-yoga: #7c9a92;
+            --card-adult: #b54b5c;
+            --card-perfume: #c49186;
+            --card-health: #6b9e6b;
+            --card-pet: #d4954b;
+            --card-squishy: #e8899e;
+            --card-toy: #5b9ecf;
+
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Ambient background ── */
+        .bg-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(180px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bg-glow--1 {
+            width: 700px;
+            height: 700px;
+            background: var(--accent);
+            top: -200px;
+            left: -200px;
+        }
+        .bg-glow--2 {
+            width: 500px;
+            height: 500px;
+            background: #e17055;
+            bottom: 10%;
+            right: -150px;
+        }
+        .bg-glow--3 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent2);
+            top: 60%;
+            left: 40%;
+        }
+
+        /* ── Container ── */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ── Header ── */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            transition: var(--transition);
+        }
+        .header.scrolled {
+            background: rgba(10, 10, 15, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .header-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .header-nav a {
+            color: var(--text2);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .header-nav a:hover {
+            color: var(--text);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 720px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(108, 92, 231, 0.12);
+            border: 1px solid rgba(108, 92, 231, 0.25);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            color: var(--accent2);
+            font-weight: 600;
+            margin-bottom: 28px;
+            letter-spacing: 0.04em;
+        }
+        .hero-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent2);
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(162, 155, 254, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(162, 155, 254, 0);
+            }
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.6rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            margin-bottom: 24px;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent2) 0%, #fd79a8 60%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            font-size: 1.18rem;
+            color: var(--text2);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 560px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        .hero-stat-num {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text2);
+            font-weight: 500;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            letter-spacing: 0.01em;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(108, 92, 231, 0.35);
+        }
+        .btn-primary:hover {
+            background: #7c6ef0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(108, 92, 231, 0.5);
+        }
+        .btn-ghost {
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .btn-ghost:hover {
+            border-color: rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ── Floating cards (hero decoration) ── */
+        .hero-visual {
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 460px;
+            height: 520px;
+            pointer-events: none;
+        }
+        .float-card {
+            position: absolute;
+            background: var(--surface2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        .float-card:nth-child(1) {
+            top: 60px;
+            left: 20px;
+            animation-delay: 0s;
+        }
+        .float-card:nth-child(2) {
+            top: 200px;
+            right: 0;
+            animation-delay: -2s;
+        }
+        .float-card:nth-child(3) {
+            top: 340px;
+            left: 40px;
+            animation-delay: -4s;
+        }
+        .float-card-emoji {
+            font-size: 2rem;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+        }
+        .float-card-emoji.yoga {
+            background: rgba(124, 154, 146, 0.2);
+        }
+        .float-card-emoji.perfume {
+            background: rgba(196, 145, 134, 0.2);
+        }
+        .float-card-emoji.pet {
+            background: rgba(212, 149, 75, 0.2);
+        }
+        .float-card-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .float-card-sub {
+            font-size: 0.8rem;
+            color: var(--text2);
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-16px);
+            }
+        }
+
+        /* ── Sections ── */
+        .section {
+            padding: 100px 0;
+        }
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent2);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--text2);
+            max-width: 560px;
+            margin-bottom: 56px;
+        }
+
+        /* ── Brand Grid ── */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .brand-card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .brand-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+        }
+        .brand-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            opacity: 0.08;
+            transition: var(--transition);
+        }
+        .brand-card:hover::before {
+            opacity: 0.16;
+            transform: scale(1.5);
+        }
+        .brand-card--yoga::before {
+            background: var(--card-yoga);
+        }
+        .brand-card--adult::before {
+            background: var(--card-adult);
+        }
+        .brand-card--perfume::before {
+            background: var(--card-perfume);
+        }
+        .brand-card--health::before {
+            background: var(--card-health);
+        }
+        .brand-card--pet::before {
+            background: var(--card-pet);
+        }
+        .brand-card--squishy::before {
+            background: var(--card-squishy);
+        }
+        .brand-card--toy::before {
+            background: var(--card-toy);
+        }
+
+        .brand-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .brand-card--yoga .brand-card-icon {
+            background: rgba(124, 154, 146, 0.18);
+        }
+        .brand-card--adult .brand-card-icon {
+            background: rgba(181, 75, 92, 0.18);
+        }
+        .brand-card--perfume .brand-card-icon {
+            background: rgba(196, 145, 134, 0.18);
+        }
+        .brand-card--health .brand-card-icon {
+            background: rgba(107, 158, 107, 0.18);
+        }
+        .brand-card--pet .brand-card-icon {
+            background: rgba(212, 149, 75, 0.18);
+        }
+        .brand-card--squishy .brand-card-icon {
+            background: rgba(232, 137, 158, 0.18);
+        }
+        .brand-card--toy .brand-card-icon {
+            background: rgba(91, 158, 207, 0.18);
+        }
+
+        .brand-card-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .brand-card--yoga .brand-card-tag {
+            color: var(--card-yoga);
+            background: rgba(124, 154, 146, 0.12);
+        }
+        .brand-card--adult .brand-card-tag {
+            color: var(--card-adult);
+            background: rgba(181, 75, 92, 0.12);
+        }
+        .brand-card--perfume .brand-card-tag {
+            color: var(--card-perfume);
+            background: rgba(196, 145, 134, 0.12);
+        }
+        .brand-card--health .brand-card-tag {
+            color: var(--card-health);
+            background: rgba(107, 158, 107, 0.12);
+        }
+        .brand-card--pet .brand-card-tag {
+            color: var(--card-pet);
+            background: rgba(212, 149, 75, 0.12);
+        }
+        .brand-card--squishy .brand-card-tag {
+            color: var(--card-squishy);
+            background: rgba(232, 137, 158, 0.12);
+        }
+        .brand-card--toy .brand-card-tag {
+            color: var(--card-toy);
+            background: rgba(91, 158, 207, 0.12);
+        }
+
+        .brand-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+        .brand-card p {
+            font-size: 0.92rem;
+            color: var(--text2);
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+        .brand-card-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 18px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+            transition: gap 0.25s;
+        }
+        .brand-card:hover .brand-card-arrow {
+            gap: 12px;
+        }
+        .brand-card--yoga .brand-card-arrow {
+            color: var(--card-yoga);
+        }
+        .brand-card--adult .brand-card-arrow {
+            color: var(--card-adult);
+        }
+        .brand-card--perfume .brand-card-arrow {
+            color: var(--card-perfume);
+        }
+        .brand-card--health .brand-card-arrow {
+            color: var(--card-health);
+        }
+        .brand-card--pet .brand-card-arrow {
+            color: var(--card-pet);
+        }
+        .brand-card--squishy .brand-card-arrow {
+            color: var(--card-squishy);
+        }
+        .brand-card--toy .brand-card-arrow {
+            color: var(--card-toy);
+        }
+
+        /* ── Feature highlights ── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 80px;
+        }
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .feature-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-4px);
+        }
+        .feature-icon {
+            font-size: 2.4rem;
+            margin-bottom: 18px;
+        }
+        .feature-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text2);
+            line-height: 1.6;
+        }
+
+        /* ── CTA Section ── */
+        .cta-section {
+            text-align: center;
+            padding: 120px 0;
+        }
+        .cta-section .section-title {
+            margin-bottom: 12px;
+        }
+        .cta-section .section-sub {
+            margin: 0 auto 40px;
+        }
+        .cta-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .cta-email:hover {
+            border-color: var(--accent);
+            background: var(--surface2);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 32px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text2);
+        }
+
+        /* ── Animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-1 {
+            transition-delay: 0.05s;
+        }
+        .stagger-2 {
+            transition-delay: 0.1s;
+        }
+        .stagger-3 {
+            transition-delay: 0.15s;
+        }
+        .stagger-4 {
+            transition-delay: 0.2s;
+        }
+        .stagger-5 {
+            transition-delay: 0.25s;
+        }
+        .stagger-6 {
+            transition-delay: 0.3s;
+        }
+        .stagger-7 {
+            transition-delay: 0.35s;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .hero-visual {
+                display: none;
+            }
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .header-inner {
+                padding: 0 20px;
+            }
+            .header-nav {
+                gap: 18px;
+            }
+            .hero {
+                min-height: auto;
+                padding: 140px 0 60px;
+            }
+            .hero-stats {
+                gap: 28px;
+            }
+            .hero-stat-num {
+                font-size: 2rem;
+            }
+            .brand-grid {
+                grid-template-columns: 1fr;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+            .section {
+                padding: 60px 0;
+            }
+            .hero-btns {
+                flex-direction: column;
+            }
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient glows -->
+    <div class="bg-glow bg-glow--1"></div>
+    <div class="bg-glow bg-glow--2"></div>
+    <div class="bg-glow bg-glow--3"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <div class="logo">BrandMatrix</div>
+            <nav>
+                <ul class="header-nav">
+                    <li><a href="#sites">Our Brands</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span> 7 Vertical Niches &middot; Global DTC Brand Portfolio
+                </div>
+                <h1>
+                    Premium Brands Across <span>Seven Niches</span><br>Built for Global Scale
+                </h1>
+                <p class="hero-desc">
+                    Seven independently operated direct-to-consumer stores spanning Yoga, Adult Wellness,
+                    Fragrance, Health Supplements, Pet Supplies, Squishy Toys, and Kids Toys —
+                    each brand strategically positioned for its market.
+                </p>
+                <div class="hero-stats">
+                    <div>
+                        <div class="hero-stat-num">7+</div>
+                        <div class="hero-stat-label">Brand Stores</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-num">7</div>
+                        <div class="hero-stat-label">Verticals</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-num">24/7</div>
+                        <div class="hero-stat-label">Operations</div>
+                    </div>
+                </div>
+                <div class="hero-btns">
+                    <a href="#sites" class="btn btn-primary">
+                        Explore Our Brands
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                    </a>
+                    <a href="#contact" class="btn btn-ghost">Partner With Us</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating cards -->
+        <div class="hero-visual">
+            <div class="float-card">
+                <div class="float-card-emoji yoga">🧘</div>
+                <div>
+                    <div class="float-card-title">Yoga Essentials</div>
+                    <div class="float-card-sub">Yoga Essentials</div>
+                </div>
+            </div>
+            <div class="float-card">
+                <div class="float-card-emoji perfume">🌸</div>
+                <div>
+                    <div class="float-card-title">Fragrance</div>
+                    <div class="float-card-sub">Luxury Scents</div>
+                </div>
+            </div>
+            <div class="float-card">
+                <div class="float-card-emoji pet">🐾</div>
+                <div>
+                    <div class="float-card-title">Pet Supplies</div>
+                    <div class="float-card-sub">Premium Pet Care</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Sites -->
+    <section class="section" id="sites">
+        <div class="container">
+            <div class="section-label">Our Brands</div>
+            <h2 class="section-title">Our Portfolio — 7 Premium Stores</h2>
+            <p class="section-sub">Each store is a full-fledged brand in its own right — deeply specialized, independently operated, and relentlessly optimized from supply chain to customer experience.</p>
+
+            <div class="brand-grid">
+
+                <!-- 1. Yoga -->
+                <a href="yoga.html" class="brand-card brand-card--yoga fade-up stagger-1">
+                    <div class="brand-card-icon">🧘‍♀️</div>
+                    <span class="brand-card-tag">Health &amp; Wellness</span>
+                    <h3>Yoga</h3>
+                    <p>Premium yoga apparel, mats, props, and accessories. Serving the global yoga community with products designed for mindfulness, flexibility, and inner balance.</p>
+                    <span class="brand-card-arrow">
+                        Visit Store
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+
+                <!-- 2. Adult Wellness -->
+                <a href="adult.html" class="brand-card brand-card--adult fade-up stagger-2">
+                    <div class="brand-card-icon">🔞</div>
+                    <span class="brand-card-tag">Adult Lifestyle</span>
+                    <h3>Adult Wellness</h3>
+                    <p>Discreet packaging, premium intimate wellness products. Privacy-first shopping experience with a focus on quality, safety, and customer trust.</p>
+                    <span class="brand-card-arrow">
+                        Visit Store
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+
+                <!-- 3. Fragrance -->
+                <a href="fragrance.html" class="brand-card brand-card--perfume fade-up stagger-3">
+                    <div class="brand-card-icon">🌹</div>
+                    <span class="brand-card-tag">Beauty &amp; Fragrance</span>
+                    <h3>Fragrance</h3>
+                    <p>Curated niche perfumes, designer scents, and oriental fragrances. Every bottle tells a story — delivering unique olfactory experiences to customers worldwide.</p>
+                    <span class="brand-card-arrow">
+                        Visit Store
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+
+                <!-- 4. Health Supplements -->
+                <a href="health.html" class="brand-card brand-card--health fade-up stagger-4">
+                    <div class="brand-card-icon">💊</div>
+                    <span class="brand-card-tag">Health &amp; Supplement</span>
+                    <h3>Health Supplements</h3>
+                    <p>Vitamins, minerals, herbal extracts, and dietary supplements. Science-backed formulations with rigorous quality control to support wellness goals globally.</p>
+                    <span class="brand-card-arrow">
+                        Visit Store
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+
+                <!-- 5. Pet Supplies -->
+                <a href="pet.html" class="brand-card brand-card--pet fade-up stagger-5">
+                    <div class="brand-card-icon">🐶</div>
+                    <span class="brand-card-tag">Pet Supplies</span>
+                    <h3>Pet Supplies</h3>
+                    <p>Toys, food, grooming, and care essentials for dogs, cats, and small pets. One-stop destination for pet parents who want nothing but the best for their furry companions.</p>
+                    <span class="brand-card-arrow">
+                        Visit Store
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+
+                <!-- 6. Squishy Toys -->
+                <a href="squishy.html" class="brand-card brand-card--squishy fade-up stagger-6">
+                    <div class="brand-card-icon">🤏</div>
+                    <span class="brand-card-tag">Sensory &amp; Fidget</span>
+                    <h3>Squishy Toys</h3>
+                    <p>Slow-rise squishies, ASMR sensory toys, and stress-relief fidgets. Tapping into the global sensory toy trend — capturing Gen Z and millennial audiences seeking relaxation and fun.</p>
+                    <span class="brand-card-arrow">
+                        Visit Store
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+
+                <!-- 7. Kids Toys -->
+                <a href="kids.html" class="brand-card brand-card--toy fade-up stagger-7">
+                    <div class="brand-card-icon">🧸</div>
+                    <span class="brand-card-tag">Kids &amp; Toys</span>
+                    <h3>Kids Toys</h3>
+                    <p>Educational toys, STEM kits, early-learning tools, and outdoor play equipment. Made with child-safe materials — where fun meets development for children of all ages.</p>
+                    <span class="brand-card-arrow">
+                        Visit Store
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-label">Why Us</div>
+            <h2 class="section-title">Why Partner With Us</h2>
+            <p class="section-sub">Every store is a complete brand ecosystem. We own the full value chain — from product sourcing to last-mile delivery.</p>
+            <div class="features">
+                <div class="feature-card fade-up stagger-1">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Precision Positioning</h4>
+                    <p>Each of our seven stores operates independently, diving deep into a single niche to build authoritative, category-defining brands.</p>
+                </div>
+                <div class="feature-card fade-up stagger-2">
+                    <div class="feature-icon">🌍</div>
+                    <h4>Global Footprint</h4>
+                    <p>Multi-language, multi-currency, and localized payment options. Serving customers across North America, Europe, Southeast Asia, and the Middle East.</p>
+                </div>
+                <div class="feature-card fade-up stagger-3">
+                    <div class="feature-icon">📦</div>
+                    <h4>Agile Supply Chain</h4>
+                    <p>Mature supplier network enabling rapid sampling, small-batch customization, and large-scale production — adapting to market demands with speed.</p>
+                </div>
+                <div class="feature-card fade-up stagger-4">
+                    <div class="feature-icon">📊</div>
+                    <h4>Data-Driven Growth</h4>
+                    <p>Granular analytics inform every decision — continuously optimizing conversion rates, AOV, and LTV to power sustainable growth flywheels.</p>
+                </div>
+                <div class="feature-card fade-up stagger-5">
+                    <div class="feature-icon">🛡️</div>
+                    <h4>Full Compliance</h4>
+                    <p>Strict adherence to advertising regulations, tax compliance, and data privacy laws across all operating regions — zero headaches, full confidence.</p>
+                </div>
+                <div class="feature-card fade-up stagger-6">
+                    <div class="feature-icon">🚀</div>
+                    <h4>Omnichannel Marketing</h4>
+                    <p>SEO, SEM, social media, KOL partnerships, and email marketing — an integrated approach that builds defensible brand traffic moats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="section-label">Get In Touch</div>
+            <h2 class="section-title">Let's Build Something Great</h2>
+            <p class="section-sub">Whether you're a supplier, distributor, or brand partner — we'd love to explore what we can achieve together. Reach out and let's talk.</p>
+            <a href="mailto:contact@example.com" class="btn btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+                Get In Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 BrandMatrix. All rights reserved. 7 Premium DTC Brands &middot; Built for Global Scale</p>
+        </div>
+    </footer>
+
+    <script>
+        // ── Header scroll effect ──
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ── Scroll reveal animation ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // ── Smooth scroll for nav links ──
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

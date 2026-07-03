@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Toys — Premium Educational &amp; Play Store</title>
+    <style>
+        :root {
+            --bg: #0a0a0f; --surface: #14141f; --surface2: #1a1a2e;
+            --text: #e8e8f0; --text2: #a0a0b8; --accent: #5b9ecf;
+            --accent2: #89c4f4; --radius: 20px; --radius-sm: 12px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI','PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+        .bg-glow { position:fixed; border-radius:50%; filter:blur(180px); opacity:0.10; pointer-events:none; z-index:0; }
+        .bg-glow--1 { width:700px; height:700px; background:var(--accent); top:-200px; right:-200px; }
+        .bg-glow--2 { width:500px; height:500px; background:var(--accent2); bottom:-150px; left:-150px; }
+        .container { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:0 32px; }
+        .header { position:fixed; top:0; left:0; right:0; z-index:100; padding:16px 0; background:rgba(10,10,15,0.75); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.06); }
+        .header-inner { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; justify-content:space-between; }
+        .logo { font-size:1.25rem; font-weight:700; color:var(--accent2); text-decoration:none; letter-spacing:-0.02em; }
+        .back-link { color:var(--text2); text-decoration:none; font-size:0.9rem; font-weight:500; display:flex; align-items:center; gap:6px; transition:color 0.2s; }
+        .back-link:hover { color:var(--text); }
+        .back-link svg { transition:transform 0.2s; }
+        .back-link:hover svg { transform:translateX(-4px); }
+        .hero { min-height:100vh; display:flex; align-items:center; padding:100px 0 60px; }
+        .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+        .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(91,158,207,0.12); border:1px solid rgba(91,158,207,0.25); border-radius:100px; padding:6px 18px; font-size:0.85rem; color:var(--accent2); font-weight:600; margin-bottom:24px; letter-spacing:0.04em; }
+        .hero-badge-dot { width:7px; height:7px; border-radius:50%; background:var(--accent2); animation:pulse-dot 2s infinite; }
+        @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(137,196,244,0.6);} 50%{box-shadow:0 0 0 10px rgba(137,196,244,0);} }
+        .hero h1 { font-size:clamp(2.6rem,5vw,4rem); font-weight:800; line-height:1.08; letter-spacing:-0.025em; margin-bottom:20px; }
+        .hero h1 span { background:linear-gradient(135deg,var(--accent2) 0%,var(--accent) 60%,#b8ddf8 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .hero-desc { font-size:1.1rem; color:var(--text2); line-height:1.7; margin-bottom:36px; }
+        .hero-stats { display:flex; gap:40px; margin-bottom:40px; }
+        .hero-stat-num { font-size:2.2rem; font-weight:800; letter-spacing:-0.02em; color:var(--accent2); }
+        .hero-stat-label { font-size:0.85rem; color:var(--text2); font-weight:500; }
+        .btn { display:inline-flex; align-items:center; gap:10px; padding:14px 32px; border-radius:100px; font-size:1rem; font-weight:600; text-decoration:none; cursor:pointer; border:none; transition:var(--transition); }
+        .btn-primary { background:var(--accent); color:#0a0a0f; box-shadow:0 4px 24px rgba(91,158,207,0.35); }
+        .btn-primary:hover { background:#73b3df; transform:translateY(-2px); box-shadow:0 8px 32px rgba(91,158,207,0.5); }
+        .btn-ghost { color:var(--text); border:1px solid rgba(255,255,255,0.15); }
+        .btn-ghost:hover { border-color:rgba(255,255,255,0.35); background:rgba(255,255,255,0.04); }
+        .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+        .hero-visual { display:flex; align-items:center; justify-content:center; }
+        .hero-emoji { font-size:10rem; filter:drop-shadow(0 30px 60px rgba(91,158,207,0.3)); animation:float 5s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
+        .section { padding:80px 0; }
+        .section-label { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--accent2); font-weight:700; margin-bottom:14px; }
+        .section-title { font-size:clamp(1.8rem,3vw,2.4rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:12px; }
+        .section-sub { font-size:1.05rem; color:var(--text2); max-width:560px; margin-bottom:48px; }
+        .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+        .product-card { background:var(--surface); border:1px solid rgba(255,255,255,0.05); border-radius:var(--radius); padding:28px; text-align:center; transition:var(--transition); }
+        .product-card:hover { transform:translateY(-4px); border-color:rgba(91,158,207,0.3); box-shadow:0 16px 40px rgba(0,0,0,0.3); }
+        .product-icon { font-size:3rem; margin-bottom:14px; }
+        .product-card h4 { font-size:1.1rem; font-weight:700; margin-bottom:6px; }
+        .product-card p { font-size:0.88rem; color:var(--text2); }
+        .usp-list { list-style:none; display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+        .usp-list li { background:var(--surface); border:1px solid rgba(255,255,255,0.05); border-radius:var(--radius-sm); padding:24px 28px; display:flex; gap:16px; align-items:flex-start; }
+        .usp-num { width:40px; height:40px; border-radius:50%; background:rgba(91,158,207,0.15); color:var(--accent2); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; flex-shrink:0; }
+        .usp-text h4 { font-size:1rem; font-weight:700; margin-bottom:4px; }
+        .usp-text p { font-size:0.88rem; color:var(--text2); line-height:1.5; }
+        .cta-section { text-align:center; padding:100px 0; }
+        .footer { border-top:1px solid rgba(255,255,255,0.06); padding:32px 0; text-align:center; font-size:0.85rem; color:var(--text2); }
+        .footer a { color:var(--accent2); text-decoration:none; }
+        .footer a:hover { text-decoration:underline; }
+        @media (max-width:768px) {
+            .hero-grid { grid-template-columns:1fr; gap:40px; } .hero-visual { order:-1; } .hero-emoji { font-size:6rem; }
+            .product-grid { grid-template-columns:1fr 1fr; } .usp-list { grid-template-columns:1fr; } .container,.header-inner { padding:0 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow bg-glow--1"></div><div class="bg-glow bg-glow--2"></div>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">BrandMatrix</a>
+            <a href="index.html" class="back-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Portfolio</a>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-badge"><span class="hero-badge-dot"></span> Kids &amp; Toys</div>
+                    <h1>Play, <span>Learn</span>, Grow — Toys That Inspire</h1>
+                    <p class="hero-desc">Educational toys, STEM kits, creative crafts, and outdoor play equipment for children of all ages. Every product is made with child-safe materials — where imagination meets development and fun builds brighter futures.</p>
+                    <div class="hero-stats">
+                        <div><div class="hero-stat-num">300+</div><div class="hero-stat-label">Products</div></div>
+                        <div><div class="hero-stat-num">0-12</div><div class="hero-stat-label">Age Range</div></div>
+                        <div><div class="hero-stat-num">4.8</div><div class="hero-stat-label">Avg Rating</div></div>
+                    </div>
+                    <div class="hero-btns">
+                        <a href="www.toysha.com" class="btn btn-primary">Visit Store →</a>
+                        <a href="index.html" class="btn btn-ghost">View Full Portfolio</a>
+                    </div>
+                </div>
+                <div class="hero-visual"><div class="hero-emoji">🧸</div></div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="section-label">Categories</div>
+            <h2 class="section-title">Toys for Every Age &amp; Stage</h2>
+            <p class="section-sub">From first sensory discoveries to complex problem-solving — thoughtfully designed for growing minds.</p>
+            <div class="product-grid">
+                <div class="product-card"><div class="product-icon">🧩</div><h4>STEM &amp; Educational</h4><p>Science kits, coding toys, math puzzles &amp; engineering sets</p></div>
+                <div class="product-card"><div class="product-icon">🎨</div><h4>Arts &amp; Crafts</h4><p>Drawing, painting, DIY kits &amp; creative expression tools</p></div>
+                <div class="product-card"><div class="product-icon">🧸</div><h4>Plush &amp; Dolls</h4><p>Cuddly companions, soft toys &amp; imaginative play figures</p></div>
+                <div class="product-card"><div class="product-icon">🏗️</div><h4>Building &amp; Construction</h4><p>Blocks, magnetic tiles, LEGO-compatible &amp; 3D puzzles</p></div>
+                <div class="product-card"><div class="product-icon">⚽</div><h4>Outdoor &amp; Sports</h4><p>Play tents, balance bikes, sports gear &amp; garden games</p></div>
+                <div class="product-card"><div class="product-icon">📚</div><h4>Books &amp; Early Learning</h4><p>Interactive books, flashcards, &amp; Montessori-inspired tools</p></div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="section-label">Why Choose Us</div>
+            <h2 class="section-title">Safety First, Fun Always</h2>
+            <p class="section-sub">Parents choose us because we never compromise on what matters most.</p>
+            <ul class="usp-list">
+                <li><div class="usp-num">1</div><div class="usp-text"><h4>ASTM &amp; CPSIA Certified</h4><p>Every toy meets or exceeds US and international safety standards — rigorously tested for your peace of mind.</p></div></li>
+                <li><div class="usp-num">2</div><div class="usp-text"><h4>Non-Toxic Materials</h4><p>BPA-free, phthalate-free, lead-free — only safe, sustainable materials touch your child's hands.</p></div></li>
+                <li><div class="usp-num">3</div><div class="usp-text"><h4>Expert-Designed</h4><p>Developed with input from child psychologists, educators, and Montessori specialists for age-appropriate play.</p></div></li>
+                <li><div class="usp-num">4</div><div class="usp-text"><h4>Satisfaction Guarantee</h4><p>Not the right fit for your child? Easy 30-day returns — because every child is unique.</p></div></li>
+            </ul>
+        </div>
+    </section>
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">Let the Adventure Begin</h2>
+            <p style="color:var(--text2);max-width:500px;margin:0 auto 36px;">Discover toys that spark curiosity, build confidence, and create lasting childhood memories.</p>
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                <a href="#" class="btn btn-primary">Shop Now</a>
+                <a href="index.html" class="btn btn-ghost">← Back to Portfolio</a>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container"><p>&copy; 2026 BrandMatrix. Part of the <a href="index.html">7-Brand Portfolio</a>. All rights reserved.</p></div>
+    </footer>
+</body>
+</html>
